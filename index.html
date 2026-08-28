@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="راهنمای صمیمی و کاربردی نودانشجویان دانشگاه تهران">
   <title>خب، دانشجو شدی؛ حالا چی؟ | راهنمای نودانشجوی دانشگاه تهران</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("freshman-theme");
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+      } catch (e) { }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
@@ -23,7 +32,7 @@
       <span><b>نودانشجو</b><small>راهنمای شروع دانشگاه</small></span>
     </a>
 
-    <nav class="nav" aria-label="منوی اصلی">
+    <nav class="nav" id="mainNav" aria-label="منوی اصلی">
       <a class="active" href="#start">شروع</a>
       <a href="#week-one">هفته اول</a>
       <a href="#academic">کلاس و معدل</a>
@@ -31,10 +40,16 @@
       <a href="#dorm">خوابگاه قدس ۳</a>
     </nav>
 
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="تغییر حالت روشن و تاریک">
-      <span id="themeIcon">☾</span>
-    </button>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="تغییر حالت روشن و تاریک">
+        <span id="themeIcon">☾</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="باز کردن منو" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
+  <div class="nav-scrim" id="navScrim"></div>
 
   <main>
     <section class="hero section" id="start">
@@ -282,9 +297,11 @@
       </div>
       <div class="official-note dark-note reveal">
         <div class="note-icon">!</div>
-        <div><strong>اطلاعات متغیر را از منبع رسمی بگیر</strong>
+        <div>
+          <strong>اطلاعات متغیر را از منبع رسمی بگیر</strong>
           <p>زمان اسکان و قوانین جاری قدس ۳ را از اطلاعیه همان ترم بررسی کن.</p>
         </div>
+        <a class="text-link" href="https://sd.ut.ac.ir" target="_blank" rel="noreferrer">میز خدمت دانشگاه تهران ↗</a>
       </div>
     </section>
 
